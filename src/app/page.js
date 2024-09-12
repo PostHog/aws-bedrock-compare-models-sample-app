@@ -25,11 +25,11 @@ export default function Home() {
       });
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to generate recipe');
+        throw new Error(data.error || 'Failed to generate output');
       }
       setOutput(data.generation);
     } catch (error) {
-      setError(error.message || 'An error occurred while generating the recipe');
+      setError(error.message || 'An error occurred while generating the output');
     } finally {
       setIsSubmitting(false);
     }
@@ -76,13 +76,13 @@ export default function Home() {
           Titan Text G1 - Express
         </button>
         <button
-          onClick={() => handleSubmit('anthropic.claude-3-opus-20240229-v1:0')}
+          onClick={() => handleSubmit('anthropic.claude-v2:1')}
           disabled={isSubmitting}
           className={`${
             isSubmitting ? 'bg-gray-500' : 'bg-red-800'
           } text-white px-4 py-2 rounded`}
         >
-          Claude 3 Opus
+          Claude 2.1
         </button>
       </div>
       {error && (
@@ -115,6 +115,6 @@ export default function Home() {
         </>
       )}
     </div>
-  )
+  );
 }
 

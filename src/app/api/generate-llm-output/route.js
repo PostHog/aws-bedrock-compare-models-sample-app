@@ -50,14 +50,14 @@ export async function POST(request) {
           }),
         };
         break;
-      case "anthropic.claude-3-opus-20240229-v1:0":
+      case "anthropic.claude-v2:1":
         input = {
           modelId,
           contentType: "application/json",
           accept: "application/json",
           body: JSON.stringify({
             prompt: `Human: ${prompt}\n\nAssistant:`,
-            max_tokens: 512,
+            max_tokens_to_sample: 512,
             temperature: 0.5,
             top_p: 0.9,
           }),
@@ -81,7 +81,7 @@ export async function POST(request) {
       case "amazon.titan-text-express-v1":
         parsedResponse = parsedJSON.results[0].outputText;
         break;
-      case "anthropic.claude-3-opus-20240229-v1:0":
+      case "anthropic.claude-v2:1":
         parsedResponse = parsedJSON.completion;
         break;
     }
