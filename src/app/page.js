@@ -5,6 +5,7 @@ import { usePostHog } from 'posthog-js/react';
 
 export default function Home() {
   const [prompt, setPrompt] = useState('');
+  const [modelId, setModelId] = useState('');
   const [email, setEmail] = useState('');
   const [output, setOutput] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -17,6 +18,8 @@ export default function Home() {
     setError('');
     setOutput('');
     setFeedbackGiven(false);
+    setModelId(modelId);
+    
     try {
       const response = await fetch('/api/generate-llm-output', {
         method: 'POST',
